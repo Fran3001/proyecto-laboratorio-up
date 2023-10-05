@@ -74,12 +74,11 @@ public class FormularioAniadirNota extends JPanel{
         jButtonAniadirNota.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int legajoAlumno = Integer.parseInt(jTextFieldIdAlumno.getText());
-                int legajoCurso = Integer.parseInt(jTextFieldIdCurso.getText());
-                int legajoProfe = Integer.parseInt(jTextFieldIdProfe.getText());
-                int nota = Integer.parseInt(jTextFieldNota.getText());
-
                 try {
+                    int legajoAlumno = Integer.parseInt(jTextFieldIdAlumno.getText());
+                    int legajoCurso = Integer.parseInt(jTextFieldIdCurso.getText());
+                    int legajoProfe = Integer.parseInt(jTextFieldIdProfe.getText());
+                    int nota = Integer.parseInt(jTextFieldNota.getText());
                     if(inscripcionesService.existeInscripcion(legajoAlumno, legajoCurso)){
                         Curso curso = claseService.buscarClase(legajoCurso);
                         if(curso.getProfesor().getLegajo() == legajoProfe){
@@ -96,7 +95,9 @@ public class FormularioAniadirNota extends JPanel{
                     }
                 } catch (ServiceException SerEx) {
                     JOptionPane.showMessageDialog(null, "error", "Error", JOptionPane.ERROR_MESSAGE);
-                }
+                }catch (NumberFormatException nex){
+                JOptionPane.showMessageDialog(null, "El tipo de dato ingresado no concuerda", "Error", JOptionPane.ERROR_MESSAGE);
+            }
 
             }
         });

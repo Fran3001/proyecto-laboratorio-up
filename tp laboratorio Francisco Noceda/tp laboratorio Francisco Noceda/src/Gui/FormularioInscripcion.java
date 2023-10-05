@@ -100,17 +100,16 @@ public class FormularioInscripcion extends JPanel {
             public void actionPerformed(ActionEvent e) {
 
                 try{
-                    if(alumnoService.buscar(Integer.parseInt(jTextFieldIdAlumno.getText())) != null){        //se verifica que el  id alumno exista
-                        if(claseService.buscarClase(Integer.parseInt(jTextFieldIdClase.getText())) != null){ //se verifica que el id clase exista
-                            if(adminService.buscar(Integer.parseInt(jTextFieldIdAdmin.getText())) != null){  //se verifica que el id admin exista
-                                if(!jRadioButtonBecado.isSelected() && !jRadioButtonNoBecado.isSelected()){  //verifica que al menos una opcion esté marcada
-                                    JOptionPane.showMessageDialog(null, "No se selecciono le estado del alumno");
-                                }else{
+                    if((!jRadioButtonBecado.isSelected() && !jRadioButtonNoBecado.isSelected()) || jTextFieldIdAdmin.getText().isEmpty() || jTextFieldIdAlumno.getText().isEmpty() || jTextFieldIdClase.getText().isEmpty()){  //verifica que al menos una opcion esté marcada
+                        JOptionPane.showMessageDialog(null, "Ningun campo puede quedar vacio", "Error", JOptionPane.ERROR_MESSAGE);
+                    }else{
+                        if(alumnoService.buscar(Integer.parseInt(jTextFieldIdAlumno.getText())) != null){        //se verifica que el id alumno exista
+                            if(claseService.buscarClase(Integer.parseInt(jTextFieldIdClase.getText())) != null){ //se verifica que el id clase exista
+                                if(adminService.buscar(Integer.parseInt(jTextFieldIdAdmin.getText())) != null){  //se verifica que el id admin exista
                                     boolean esBecado = jRadioButtonBecado.isSelected();
                                     Administrador admin = adminService.buscar(Integer.parseInt(jTextFieldIdAdmin.getText()));
                                     Alumno alumno = alumnoService.buscar(Integer.parseInt(jTextFieldIdAlumno.getText()));
                                     Curso curso = claseService.buscarClase(Integer.parseInt(jTextFieldIdClase.getText()));
-
                                     if(inscripcionesService.puedeInscribirse(alumno.getLegajo(), curso.getLegajo())){
                                         admin.agregarAlumnoACurso(alumno, curso, esBecado);
                                         inscripcionesService.guardarInscripcion(alumno.getLegajo(), curso.getLegajo());
@@ -121,32 +120,22 @@ public class FormularioInscripcion extends JPanel {
                                     }else{
                                         JOptionPane.showMessageDialog(null, "El alumno no puede inscribirse al curso", "Error", JOptionPane.ERROR_MESSAGE);
                                     }
-                                    //
+                                }else{
+                                    JOptionPane.showMessageDialog(null, "El legajo no corresponde a ningun admin", "Error", JOptionPane.ERROR_MESSAGE);
                                 }
-                        }else{
-                                JOptionPane.showMessageDialog(null, "El legajo no corresponde a ningun admin", "Error", JOptionPane.ERROR_MESSAGE);
+                            }else{
+                                JOptionPane.showMessageDialog(null, "El legajo no corresponde a ningun curso", "Error", JOptionPane.ERROR_MESSAGE);
                             }
                         }else{
-                            JOptionPane.showMessageDialog(null, "El legajo no corresponde a ningun curso", "Error", JOptionPane.ERROR_MESSAGE);
+                             JOptionPane.showMessageDialog(null, "El legajo no corresponde a ningun alumno", "Error", JOptionPane.ERROR_MESSAGE);
                         }
-                        }else{
-                        JOptionPane.showMessageDialog(null, "El legajo no corresponde a ningun alumno", "Error", JOptionPane.ERROR_MESSAGE);
-                        }
+                    }
                 }catch(ServiceException serEx){
                     JOptionPane.showMessageDialog(null, "ERROR", "Error", JOptionPane.ERROR_MESSAGE);
+                }catch (NumberFormatException nex){
+                    JOptionPane.showMessageDialog(null, "El tipo de dato ingresado no concuerda", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
-
-
-
-
-
-
     }
-
-
-
-
-
 }

@@ -67,9 +67,9 @@ public class FormularioEliminarCursosAprobados extends JPanel {
         jButtonEliminarCursosAprobados.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int legAlumno = Integer.parseInt(jTextFieIdAlumno.getText());
-                int legAdmin = Integer.parseInt(jTextFieIdAdmin.getText());
                 try{
+                    int legAlumno = Integer.parseInt(jTextFieIdAlumno.getText());
+                    int legAdmin = Integer.parseInt(jTextFieIdAdmin.getText());
                     if(adminService.buscar(legAdmin) != null){
                         if(alumnoService.buscar(legAlumno) != null){
                             if(inscripcionesService.buscarTodosPara(legAlumno) != null){
@@ -96,8 +96,9 @@ public class FormularioEliminarCursosAprobados extends JPanel {
                     }
                 }catch (ServiceException serEx){
                     JOptionPane.showMessageDialog(null, "No se pudo eliminar la nota", "Error", JOptionPane.ERROR_MESSAGE);
+                }catch (NumberFormatException nex){
+                JOptionPane.showMessageDialog(null, "El tipo de dato ingresado no concuerda", "Error", JOptionPane.ERROR_MESSAGE);
                 }
-
             }
         });
 
