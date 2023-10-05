@@ -73,6 +73,7 @@ public class FormularioUsuarios extends JPanel{
                 if(!jTextFieldApellido.getText().isEmpty() && !jTextFieldNombre.getText().isEmpty()){
                     try{
                         adminService.guardarAdmin(admin);
+                        JOptionPane.showMessageDialog(null, "Operacion realizada con exito", "Confirmacion", JOptionPane.PLAIN_MESSAGE);
                         jTextFieldNombre.setText("");
                         jTextFieldApellido.setText("");
                     }catch (ServiceException serEx){
@@ -93,6 +94,7 @@ public class FormularioUsuarios extends JPanel{
                 if(!jTextFieldApellido.getText().isEmpty() && !jTextFieldNombre.getText().isEmpty()){
                     try{
                         profesorService.guardarProfe(profesor);
+                        JOptionPane.showMessageDialog(null, "Operacion realizada con exito", "Confirmacion", JOptionPane.PLAIN_MESSAGE);
                         jTextFieldNombre.setText("");
                         jTextFieldApellido.setText("");
                     }catch (ServiceException serEx){

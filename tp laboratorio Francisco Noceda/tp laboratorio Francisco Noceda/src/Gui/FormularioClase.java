@@ -89,13 +89,18 @@ public class FormularioClase extends JPanel {
                 if(!(jTextFieldNombre.getText().isEmpty() || jTextFieldCupo.getText().isEmpty() || jTextFieldPrecio.getText().isEmpty() || jTextFieldNotaMin.getText().isEmpty() || jTextFieldProfesorLegajo.getText().isEmpty())){
                     try{
                         if(profeService.buscar(Integer.parseInt(jTextFieldProfesorLegajo.getText())) != null){
-                            curso.setNombre(jTextFieldNombre.getText());
-                            curso.setCupo(Integer.parseInt(jTextFieldCupo.getText()));
-                            curso.setProfesor(profeService.buscar(Integer.parseInt(jTextFieldProfesorLegajo.getText()))); //busca el legajo en la base de datos para devolver el profesor
-                            curso.setNotaParaMinimaAprobar(Integer.parseInt(jTextFieldNotaMin.getText()));
-                            curso.setPrecio(Integer.parseInt(jTextFieldPrecio.getText()));
-                            claseService.guardarClase(curso);
-                            limpiarTodo();
+                            if(Integer.parseInt(jTextFieldCupo.getText()) > -1) {
+                                curso.setNombre(jTextFieldNombre.getText());
+                                curso.setCupo(Integer.parseInt(jTextFieldCupo.getText()));
+                                curso.setProfesor(profeService.buscar(Integer.parseInt(jTextFieldProfesorLegajo.getText()))); //busca el legajo en la base de datos para devolver el profesor
+                                curso.setNotaParaMinimaAprobar(Integer.parseInt(jTextFieldNotaMin.getText()));
+                                curso.setPrecio(Integer.parseInt(jTextFieldPrecio.getText()));
+                                claseService.guardarClase(curso);
+                                limpiarTodo();
+                                JOptionPane.showMessageDialog(null, "Operacion realizada con exito", "Confirmacion", JOptionPane.PLAIN_MESSAGE);
+                            }else{
+                                JOptionPane.showMessageDialog(null, "el cupo debe ser igual o mayor a 0", "Error", JOptionPane.INFORMATION_MESSAGE);
+                            }
                         }else{
                             JOptionPane.showMessageDialog(null, "ese legajo no corresponde a ningun profesor", "Error", JOptionPane.ERROR_MESSAGE);
                         }

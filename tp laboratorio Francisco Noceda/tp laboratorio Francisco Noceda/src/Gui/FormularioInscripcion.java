@@ -100,9 +100,9 @@ public class FormularioInscripcion extends JPanel {
             public void actionPerformed(ActionEvent e) {
 
                 try{
-                    if(alumnoService.buscar(Integer.parseInt(jTextFieldIdAlumno.getText())) != null){        //se verifica que el  id exista
-                        if(claseService.buscarClase(Integer.parseInt(jTextFieldIdClase.getText())) != null){ //se verifica que el id exista
-                            if(adminService.buscar(Integer.parseInt(jTextFieldIdAdmin.getText())) != null){  //se verifica que el id exista
+                    if(alumnoService.buscar(Integer.parseInt(jTextFieldIdAlumno.getText())) != null){        //se verifica que el  id alumno exista
+                        if(claseService.buscarClase(Integer.parseInt(jTextFieldIdClase.getText())) != null){ //se verifica que el id clase exista
+                            if(adminService.buscar(Integer.parseInt(jTextFieldIdAdmin.getText())) != null){  //se verifica que el id admin exista
                                 if(!jRadioButtonBecado.isSelected() && !jRadioButtonNoBecado.isSelected()){  //verifica que al menos una opcion esté marcada
                                     JOptionPane.showMessageDialog(null, "No se selecciono le estado del alumno");
                                 }else{
@@ -117,6 +117,7 @@ public class FormularioInscripcion extends JPanel {
                                         admin.agregarAlumnoACurso(alumno, curso, esBecado);
                                         claseService.sumarRecaudacion(curso.getRecaudacionTotal(), curso.getLegajo());
                                         claseService.actualizarCupo(curso.getLegajo());
+                                        JOptionPane.showMessageDialog(null, "Operacion realizada con exito", "Confirmacion", JOptionPane.PLAIN_MESSAGE);
                                     }else{
                                         JOptionPane.showMessageDialog(null, "El alumno no puede inscribirse al curso", "Error", JOptionPane.ERROR_MESSAGE);
                                     }

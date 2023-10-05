@@ -58,6 +58,7 @@ public class FormularioEliminarUsuarios extends JPanel{
                try{
                    if(!jTextField.getText().isEmpty()){
                        adminService.eliminar(Integer.parseInt(jTextField.getText()));
+                       JOptionPane.showMessageDialog(null, "Operacion realizada con exito", "Confirmacion", JOptionPane.PLAIN_MESSAGE);
                        jTextField.setText("");
                    }else{
                        JOptionPane.showMessageDialog(null, "El campo de texto no puede quedar vacio", "Error", JOptionPane.ERROR_MESSAGE);
@@ -76,6 +77,7 @@ public class FormularioEliminarUsuarios extends JPanel{
                try{
                    if(!jTextField.getText().isEmpty()){
                        profesorService.eliminar(Integer.parseInt(jTextField.getText()));
+                       JOptionPane.showMessageDialog(null, "Operacion realizada con exito", "Confirmacion", JOptionPane.PLAIN_MESSAGE);
                        jTextField.setText("");
                    }else{
                        JOptionPane.showMessageDialog(null, "El campo de texto no puede quedar vacio", "Error", JOptionPane.ERROR_MESSAGE);

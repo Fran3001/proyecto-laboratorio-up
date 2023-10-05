@@ -82,6 +82,7 @@ public class FormularioAlumno extends JPanel{
                         jTextFieldLegajoAdmin.setText("");
                         if(adminService.buscar(legajo) != null){
                             alumnoService.guardarAlumno(alumno);
+                            JOptionPane.showMessageDialog(null, "Operacion realizada con exito", "Confirmacion", JOptionPane.PLAIN_MESSAGE);
                         }else{
                             JOptionPane.showMessageDialog(null, "El legajo no corresponde a ningun admin", "Error", JOptionPane.ERROR_MESSAGE);
                         }

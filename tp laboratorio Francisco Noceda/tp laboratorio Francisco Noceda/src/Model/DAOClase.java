@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class DAOClase implements DAO<Curso>{
 
     private String DB_JDBC_DRIVER="org.h2.Driver";
-    private String DB_URL = "jdbc:h2:C:\\Users\\franc\\OneDrive\\Escritorio\\lab\\Base\\test";
+    private String DB_URL = "jdbc:h2:C:\\Users\\franc\\OneDrive\\Escritorio\\proyecto-laboratorio-up\\Base\\test";
     private String DB_USER="sa";
     private String DB_PASSWORD="";
 

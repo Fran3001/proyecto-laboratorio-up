@@ -86,6 +86,7 @@ public class FormularioAniadirNota extends JPanel{
                             //
                             int legajoInscripcion = inscripcionesService.getIdInscripcion(legajoAlumno, legajoCurso);
                             inscripcionesService.agregarNota(nota, legajoInscripcion);
+                            JOptionPane.showMessageDialog(null, "Operacion realizada con exito", "Confirmacion", JOptionPane.PLAIN_MESSAGE);
                             //
                         }else{
                             JOptionPane.showMessageDialog(null, "El profesor no corresponde a ese curso", "Error", JOptionPane.ERROR_MESSAGE);

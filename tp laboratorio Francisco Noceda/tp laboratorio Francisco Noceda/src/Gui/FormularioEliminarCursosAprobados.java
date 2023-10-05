@@ -81,6 +81,7 @@ public class FormularioEliminarCursosAprobados extends JPanel {
                                         int nota = inscripcionesService.getNota(idIns);
                                         if(nota >= curso.getNotaParaMinimaAprobar()){
                                             inscripcionesService.eliminar(idIns);
+                                            JOptionPane.showMessageDialog(null, "Operacion realizada con exito", "Confirmacion", JOptionPane.PLAIN_MESSAGE);
                                         }
                                     }
                                 //
