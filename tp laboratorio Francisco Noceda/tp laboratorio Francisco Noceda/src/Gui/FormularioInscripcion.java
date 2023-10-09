@@ -116,6 +116,7 @@ public class FormularioInscripcion extends JPanel {
                                         admin.agregarAlumnoACurso(alumno, curso, esBecado);
                                         claseService.sumarRecaudacion(curso.getRecaudacionTotal(), curso.getLegajo());
                                         claseService.actualizarCupo(curso.getLegajo());
+                                        limpiarCampos();
                                         JOptionPane.showMessageDialog(null, "Operacion realizada con exito", "Confirmacion", JOptionPane.PLAIN_MESSAGE);
                                     }else{
                                         JOptionPane.showMessageDialog(null, "El alumno no puede inscribirse al curso", "Error", JOptionPane.ERROR_MESSAGE);
@@ -138,4 +139,12 @@ public class FormularioInscripcion extends JPanel {
             }
         });
     }
+
+        private void limpiarCampos(){
+            jTextFieldIdAdmin.setText("");
+            jTextFieldIdClase.setText("");
+            jTextFieldIdAlumno.setText("");
+
+        }
 }
+

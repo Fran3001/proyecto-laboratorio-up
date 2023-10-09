@@ -85,6 +85,7 @@ public class FormularioAniadirNota extends JPanel{
                             //
                             int legajoInscripcion = inscripcionesService.getIdInscripcion(legajoAlumno, legajoCurso);
                             inscripcionesService.agregarNota(nota, legajoInscripcion);
+                            limpiarCampos();
                             JOptionPane.showMessageDialog(null, "Operacion realizada con exito", "Confirmacion", JOptionPane.PLAIN_MESSAGE);
                             //
                         }else{
@@ -111,4 +112,13 @@ public class FormularioAniadirNota extends JPanel{
             }
         });
     }
+
+    private void limpiarCampos(){
+        jTextFieldIdAlumno.setText("");
+        jTextFieldNota.setText("");
+        jTextFieldIdCurso.setText("");
+        jTextFieldIdProfe.setText("");
+
+    }
+
 }
